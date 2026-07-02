@@ -39,7 +39,7 @@ export const Tooltip = ({
         <RadixTooltip.Trigger asChild>
           <span
             ref={triggerRef}
-            className={cn("inline-flex shrink-0", className)}
+            className={cn("inline-flex min-w-0 flex-1", className)}
           >
             {anchor}
           </span>
@@ -49,7 +49,7 @@ export const Tooltip = ({
             side={side}
             sideOffset={8}
             collisionPadding={8}
-            className="z-9999 max-w-48 rounded-md bg-(--_fe-tooltip-bg) px-2 py-1 text-[11px] leading-none whitespace-nowrap text-(--_fe-tooltip-text) shadow-lg"
+            className="z-9999 max-w-48 rounded-md bg-(--_fe-tooltip-bg) px-2 py-1 text-[12px] leading-none whitespace-nowrap text-(--_fe-tooltip-text) shadow-lg"
           >
             {content}
           </RadixTooltip.Content>

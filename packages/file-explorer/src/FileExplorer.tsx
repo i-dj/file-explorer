@@ -3,7 +3,12 @@
 import "./styles/theme.css";
 import { FileContent, FileDetail } from "./components";
 import { FileExplorerContext } from "./context";
-import { configureUppy, createTranslator, detectPreferredLocale, resolveLocale } from "./lib";
+import {
+  configureUppy,
+  createTranslator,
+  detectPreferredLocale,
+  resolveLocale,
+} from "./lib";
 import { useUploadStore } from "./store/useUploadStore";
 import {
   FileExplorerFeatures,
@@ -144,7 +149,11 @@ export function FileExplorer({
   };
 
   return (
-    <div className="fe-theme" data-font-size={fontSize} data-theme={theme}>
+    <div
+      className="fe-theme text-(--_fe-text)"
+      data-font-size={fontSize}
+      data-theme={theme}
+    >
       <FileExplorerContext.Provider
         value={{
           lang: resolvedLang,

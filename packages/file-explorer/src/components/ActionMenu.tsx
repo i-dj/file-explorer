@@ -99,15 +99,14 @@ export const ActionMenu = ({
           collisionPadding={16}
           onCloseAutoFocus={(e) => e.preventDefault()}
           className={cn(
-            "z-9999 min-w-55 overflow-hidden rounded-xl border border-(--_fe-glass-border) p-1.25 text-(--_fe-text)",
-            "shadow-(--_fe-shadow-soft)",
-            "bg-(--_fe-bg)",
+            "z-9999 min-w-55 overflow-hidden rounded-xl border border-[#2b2d33] bg-[#17191e] p-1.5 text-[#a8aaaf]",
+            "shadow-[0_18px_42px_rgba(0,0,0,0.34)]",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
           )}
         >
           {title && (
-            <div className="mb-0.5 border-b border-(--_fe-border) px-3 py-1.5 select-none">
-              <span className="text-(--_fe-text-sub) text-[length:var(--_fe-font-2xs)] font-semibold leading-none tracking-[0.14em] uppercase">
+            <div className="mb-1 border-b border-[#2d3036] px-3 py-1.5 select-none">
+              <span className="text-[length:var(--_fe-font-2xs)] leading-none font-semibold tracking-[0.14em] text-[#c8c9cc] uppercase">
                 {title}
               </span>
             </div>
@@ -137,8 +136,8 @@ export const ActionMenu = ({
                       {item.render({ closeMenu: () => setOpen(false) })}
                     </div>
                   ) : item.isHeader ? (
-                    <div className="mt-0.5 px-3 py-0.5 select-none">
-                      <span className="text-(--_fe-text-sub) text-[9px] font-semibold tracking-[0.12em] uppercase">
+                    <div className="mt-1 px-3 py-1 select-none">
+                      <span className="text-[9px] font-semibold tracking-[0.12em] text-[#c8c9cc] uppercase">
                         {item.label}
                       </span>
                     </div>
@@ -159,22 +158,21 @@ export const ActionMenu = ({
                         }
                       }}
                       className={cn(
-                        "flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-2 py-1.75 text-[length:var(--_fe-font-sm)] outline-none",
+                        "flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-1.5 text-[length:var(--_fe-font-sm)] outline-none",
                         item.isDelete
-                          ? "text-red-500 focus:bg-red-500/10 focus:text-red-600 data-highlighted:bg-red-500/10 data-highlighted:text-red-600"
-                          : "text-(--_fe-text-sub) hover:bg-(--_fe-hover) hover:text-(--_fe-text) focus:bg-(--_fe-hover) focus:text-(--_fe-text) data-highlighted:bg-(--_fe-hover)  data-highlighted:text-(--_fe-text)",
-                        item.checked &&
-                          "bg-(--_fe-active-soft) text-(--_fe-text)",
+                          ? "text-[#ff3347] focus:bg-[#3b2028] hover:bg-red-950/80 focus:text-[#ff3347] data-highlighted:bg-[#3b2028] data-highlighted:text-[#ff3347]"
+                          : "text-[#a8aaaf] hover:bg-[#3b3d43] hover:text-white focus:bg-[#3b3d43] focus:text-white data-highlighted:bg-[#3b3d43] data-highlighted:text-white",
+                        item.checked && "bg-[#3b3d43] text-white",
                         "data-disabled:pointer-events-none data-disabled:opacity-40",
                         item.className,
                       )}
                     >
-                      <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center text-current">
                         {item.checked ? (
                           <Check
                             size={15}
                             strokeWidth={3}
-                            className="text-(--_fe-text)"
+                            className="text-current"
                           />
                         ) : item.icon ? (
                           React.isValidElement(item.icon) ? (
@@ -191,7 +189,7 @@ export const ActionMenu = ({
                     </DropdownMenu.Item>
                   )}
                   {showSeparator && (
-                    <div className="bg-(--_fe-border)/50 mx-2 my-0.75 h-px" />
+                    <div className="mx-3 my-1 h-px bg-[#2d3036]" />
                   )}
                 </React.Fragment>
               );

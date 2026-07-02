@@ -134,7 +134,7 @@ export const FileFolder = ({
         </div>
       ) : (
         <Tooltip content={fileNode.name}>
-          <p className="text-(--_fe-selected) w-26 truncate pr-8 text-left text-[length:var(--_fe-font-sm)]">
+          <p className="text-(--_fe-selected) w-full truncate pr-8 text-left text-[length:var(--_fe-font-sm)]">
             {fileNode.name}
           </p>
         </Tooltip>

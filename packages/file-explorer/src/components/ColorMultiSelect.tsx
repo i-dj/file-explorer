@@ -74,16 +74,16 @@ export function ColorMultiSelect({
   const defaultGradient = "#3b82f6, #ef4444  ";
 
   return (
-    <div className={cn("flex items-center gap-2 p-2", className)}>
+    <div className={cn("flex items-center gap-3 px-3 py-2", className)}>
       <Button
         noHover
         tip={isFilterMode ? t("color.showAll") : t("color.clearAll")}
         className={cn(
-          "h-4.5 w-4.5 shrink-0 p-0 transition-all",
+          "h-5 w-5 shrink-0 p-0 transition-all",
           isFilterMode &&
-            "rounded-full border border-(--_fe-glass-border)",
+            "rounded-full border border-[#3a3d44]",
           !isFilterMode &&
-            "bg-transparent text-(--_fe-text-muted) hover:bg-transparent",
+            "bg-transparent text-[#a8aaaf] hover:bg-transparent hover:text-white",
         )}
         style={
           isFilterMode
@@ -104,20 +104,18 @@ export function ColorMultiSelect({
           )
         ) : (
           <Ban
-            size={16}
+            size={18}
             strokeWidth={2.2}
             className={cn(
-              isClear
-                ? "text-(--_fe-text-sub)"
-                : "text-(--_fe-text-muted)",
+              isClear ? "text-[#a8aaaf]" : "text-white",
             )}
           />
         )}
       </Button>
 
-      <div className="bg-(--_fe-border) mx-1 h-3 w-px" />
+      <div className="mx-0.5 h-4 w-px bg-[#4a4d54]" />
 
-      <div className="flex gap-2">
+      <div className="flex gap-3">
         {entries.map(([key, color]) => {
           const isSingleSelected = isFilterMode
             ? selected.includes(key) && !isShowAll
@@ -128,7 +126,7 @@ export function ColorMultiSelect({
               key={key}
               noHover
               className={cn(
-                "h-4.5 w-4.5 rounded-full p-0 transition-all",
+                "h-5 w-5 rounded-full p-0 transition-all ring-1 ring-transparent hover:ring-white/50",
                 color.bgClass,
               )}
               onClick={(e) => toggle(key, e)}

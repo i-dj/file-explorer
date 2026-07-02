@@ -33,10 +33,10 @@ export const FileGridView = ({
   const { t, gridSize } = useFileExplorerContext();
   const gridColumnsClass =
     gridSize === "sm"
-      ? "grid-cols-[repeat(auto-fill,minmax(130px,1fr))]"
+      ? "grid-cols-[repeat(auto-fill,minmax(150px,1fr))]"
       : gridSize === "lg"
-        ? "grid-cols-[repeat(auto-fill,minmax(190px,1fr))]"
-        : "grid-cols-[repeat(auto-fill,minmax(150px,1fr))]";
+        ? "grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
+        : "grid-cols-[repeat(auto-fill,minmax(200px,1fr))]";
   const renderItem = (item: any) => {
     const isNew = item.id === newlyCreatedId;
     const active = isSelected(item);
@@ -83,7 +83,7 @@ export const FileGridView = ({
   // Render one grouped section at a time.
   const renderSection = (title: string, list: any[]) =>
     list.length > 0 && (
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-5">
         <h3 className="text-(--_fe-selected) flex gap-2 text-[length:var(--_fe-font-sm)] font-bold tracking-widest uppercase">
           <div>{title}</div>
           {/* This badge is local to the grid section header, so keeping it
@@ -99,7 +99,7 @@ export const FileGridView = ({
     );
 
   return (
-    <div className="flex flex-col gap-8 pb-10">
+    <div className="flex flex-col gap-10 pb-10">
       {renderSection(
         t("grid.folders"),
         items.filter((i) => i.type === "folder"),

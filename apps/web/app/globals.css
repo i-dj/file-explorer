@@ -5,7 +5,7 @@
 
 :root {
     color-scheme: light;
-    --app-bg: #f7f8fa;
+    --app-bg: #fff;
     --app-surface: #ffffff;
     --app-text: #171a20;
     --app-text-muted: #6b7280;
@@ -34,7 +34,7 @@ html.light {
 
 html.dark {
     color-scheme: dark;
-    --app-bg: #282c32;
+    --app-bg: #1c1d21;
     --app-surface: #171a20;
     --app-text: #f3f4f6;
     --app-text-muted: #9ca3af;
