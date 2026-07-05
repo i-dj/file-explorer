@@ -57,7 +57,7 @@ export type FileViewMode = "grid" | "list";
 export type FileSortDirection = "asc" | "desc";
 export type FileSortField = keyof FileNode | string;
 export type FileExplorerFontSize = "sm" | "md" | "lg";
-export type FileExplorerTheme = "auto" | "light" | "dark";
+export type FileExplorerTheme = "light" | "dark";
 
 export interface FileListColumn {
   key: FileSortField | "__actions__";

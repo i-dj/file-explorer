@@ -71,51 +71,53 @@ export function ColorMultiSelect({
     onChange(next);
   };
 
-  const defaultGradient = "#3b82f6, #ef4444  ";
+  const defaultGradient =
+    "#ef4444 0 20%, #3b82f6 20% 40%, #22c55e 40% 60%, #eab308 60% 80%, #6b7280 80% 100%";
 
   return (
-    <div className={cn("flex items-center gap-3 px-3 py-2", className)}>
+    <div className={cn("flex items-center gap-2.5 px-3 py-1", className)}>
       <Button
         noHover
         tip={isFilterMode ? t("color.showAll") : t("color.clearAll")}
         className={cn(
-          "h-5 w-5 shrink-0 p-0 transition-all",
+          "relative h-6 w-6 shrink-0 bg-transparent p-0 transition-all",
           isFilterMode &&
-            "rounded-full border border-[#3a3d44]",
+            "rounded-full border border-(--_fe-menu-control-border) ring-1 ring-transparent hover:ring-(--_fe-menu-control-ring)",
           !isFilterMode &&
-            "bg-transparent text-[#a8aaaf] hover:bg-transparent hover:text-white",
+            "bg-transparent text-(--_fe-menu-control-text) hover:bg-transparent hover:text-(--_fe-menu-control-active)",
         )}
-        style={
-          isFilterMode
-            ? {
-                background: `conic-gradient(${defaultGradient})`,
-              }
-            : undefined
-        }
         onClick={handleReset}
       >
         {isFilterMode ? (
-          isShowAll && (
-            <Check
-              size={12}
-              strokeWidth={4}
-              className="text-white drop-shadow-sm"
+          <>
+            <span
+              className="absolute inset-1 rounded-full"
+              style={{ background: `conic-gradient(${defaultGradient})` }}
             />
-          )
+            {isShowAll && (
+              <Check
+                size={13}
+                strokeWidth={4}
+                className="relative text-white drop-shadow-sm"
+              />
+            )}
+          </>
         ) : (
           <Ban
             size={18}
             strokeWidth={2.2}
             className={cn(
-              isClear ? "text-[#a8aaaf]" : "text-white",
+              isClear
+                ? "text-(--_fe-menu-control-text)"
+                : "text-(--_fe-menu-control-active)",
             )}
           />
         )}
       </Button>
 
-      <div className="mx-0.5 h-4 w-px bg-[#4a4d54]" />
+      <div className="mx-0.5 h-4 w-px bg-(--_fe-menu-control-divider)" />
 
-      <div className="flex gap-3">
+      <div className="flex gap-2.5">
         {entries.map(([key, color]) => {
           const isSingleSelected = isFilterMode
             ? selected.includes(key) && !isShowAll
@@ -126,7 +128,7 @@ export function ColorMultiSelect({
               key={key}
               noHover
               className={cn(
-                "h-5 w-5 rounded-full p-0 transition-all ring-1 ring-transparent hover:ring-white/50",
+                "h-5 w-5 rounded-full p-0 transition-all ring-1 ring-transparent hover:ring-(--_fe-menu-control-ring)",
                 color.bgClass,
               )}
               onClick={(e) => toggle(key, e)}

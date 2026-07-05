@@ -176,7 +176,6 @@ export default function Page() {
 
 `theme` も次をサポートします:
 
-- `"auto"`
 - `"light"`
 - `"dark"`
 
@@ -324,7 +323,7 @@ export default function Page() {
 | `breadcrumbs` | `BreadcrumbItem[]` | 旧方式の分割入力。 |
 | `storageInfo` | `{ totalBytes?: number; availableBytes?: number }` | 容量情報を表示します。 |
 | `fontSize` | `"sm" \| "md" \| "lg"` | コンポーネント全体の文字サイズ。既定値は `"md"`。 |
-| `theme` | `"auto" \| "light" \| "dark"` | テーマモード。既定値は `"auto"`。 |
+| `theme` | `"light" \| "dark"` | テーマモード。既定値は `"light"`。 |
 | `lang` | `string` | ロケールを設定します。 |
 | `dateFormat` | `string` | 日時表示形式を設定します。 |
 | `renderPreview` | `(file) => ReactNode` | grid プレビューをカスタマイズします。 |

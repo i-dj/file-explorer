@@ -99,20 +99,19 @@ export const ActionMenu = ({
           collisionPadding={16}
           onCloseAutoFocus={(e) => e.preventDefault()}
           className={cn(
-            "z-9999 min-w-55 overflow-hidden rounded-xl border border-[#2b2d33] bg-[#17191e] p-1.5 text-[#a8aaaf]",
-            "shadow-[0_18px_42px_rgba(0,0,0,0.34)]",
+            "z-9999 min-w-48 overflow-hidden rounded-xl border border-(--_fe-menu-border) bg-(--_fe-menu-bg) px-2 py-1.5 text-(--_fe-menu-text) [box-shadow:var(--_fe-menu-shadow)]",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
           )}
         >
           {title && (
-            <div className="mb-1 border-b border-[#2d3036] px-3 py-1.5 select-none">
-              <span className="text-[length:var(--_fe-font-2xs)] leading-none font-semibold tracking-[0.14em] text-[#c8c9cc] uppercase">
+            <div className="mb-1 border-b border-(--_fe-menu-separator) px-3 py-2 select-none">
+              <span className="text-(--_fe-menu-heading) text-[11px] leading-none font-bold tracking-widest uppercase">
                 {title}
               </span>
             </div>
           )}
 
-          <div className="flex flex-col gap-px">
+          <div className="flex flex-col gap-0.5">
             {items.map((item, index) => {
               const showSeparator =
                 item.separator &&
@@ -129,15 +128,15 @@ export const ActionMenu = ({
                   !item.icon &&
                   !item.action ? null : item.render ? (
                     <div
-                      className={cn("px-0.5", item.className)}
+                      className={cn("px-1", item.className)}
                       onMouseDown={(e) => e.preventDefault()}
                       onClick={(e) => e.stopPropagation()}
                     >
                       {item.render({ closeMenu: () => setOpen(false) })}
                     </div>
                   ) : item.isHeader ? (
-                    <div className="mt-1 px-3 py-1 select-none">
-                      <span className="text-[9px] font-semibold tracking-[0.12em] text-[#c8c9cc] uppercase">
+                    <div className="mt-1 px-3 py-0 select-none">
+                      <span className="text-(--_fe-menu-heading) text-[10px] font-medium tracking-wider uppercase">
                         {item.label}
                       </span>
                     </div>
@@ -158,11 +157,12 @@ export const ActionMenu = ({
                         }
                       }}
                       className={cn(
-                        "flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-1.5 text-[length:var(--_fe-font-sm)] outline-none",
+                        "flex w-full cursor-pointer items-center gap-3 rounded-md px-2 py-1.5 text-[length:var(--_fe-font-sm)] transition-colors duration-200 ease-out outline-none",
                         item.isDelete
-                          ? "text-[#ff3347] focus:bg-[#3b2028] hover:bg-red-950/80 focus:text-[#ff3347] data-highlighted:bg-[#3b2028] data-highlighted:text-[#ff3347]"
-                          : "text-[#a8aaaf] hover:bg-[#3b3d43] hover:text-white focus:bg-[#3b3d43] focus:text-white data-highlighted:bg-[#3b3d43] data-highlighted:text-white",
-                        item.checked && "bg-[#3b3d43] text-white",
+                          ? "text-(--_fe-menu-danger) hover:bg-(--_fe-menu-danger-hover-bg) focus:bg-(--_fe-menu-danger-hover-bg) focus:text-(--_fe-menu-danger) data-highlighted:bg-(--_fe-menu-danger-hover-bg) data-highlighted:text-(--_fe-menu-danger)"
+                          : "text-(--_fe-menu-text) hover:bg-(--_fe-menu-hover-bg) hover:text-(--_fe-menu-hover-text) focus:bg-(--_fe-menu-hover-bg) focus:text-(--_fe-menu-hover-text) data-highlighted:bg-(--_fe-menu-hover-bg) data-highlighted:text-(--_fe-menu-hover-text)",
+                        item.checked &&
+                          "bg-(--_fe-menu-hover-bg) text-(--_fe-menu-hover-text)",
                         "data-disabled:pointer-events-none data-disabled:opacity-40",
                         item.className,
                       )}
@@ -170,7 +170,7 @@ export const ActionMenu = ({
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center text-current">
                         {item.checked ? (
                           <Check
-                            size={15}
+                            size={16}
                             strokeWidth={3}
                             className="text-current"
                           />
@@ -180,7 +180,7 @@ export const ActionMenu = ({
                           ) : (
                             (() => {
                               const Icon = item.icon;
-                              return <Icon size={15} />;
+                              return <Icon size={16} />;
                             })()
                           )
                         ) : null}
@@ -189,7 +189,7 @@ export const ActionMenu = ({
                     </DropdownMenu.Item>
                   )}
                   {showSeparator && (
-                    <div className="mx-3 my-1 h-px bg-[#2d3036]" />
+                    <div className="mx-2 my-1 h-px bg-(--_fe-menu-separator)" />
                   )}
                 </React.Fragment>
               );

@@ -176,7 +176,6 @@ export default function Page() {
 
 `theme` 도 다음 값을 지원합니다:
 
-- `"auto"`
 - `"light"`
 - `"dark"`
 
@@ -324,7 +323,7 @@ export default function Page() {
 | `breadcrumbs` | `BreadcrumbItem[]` | 구 버전 분리 입력입니다. |
 | `storageInfo` | `{ totalBytes?: number; availableBytes?: number }` | 용량 정보를 표시합니다. |
 | `fontSize` | `"sm" \| "md" \| "lg"` | 컴포넌트 전체 글자 크기입니다. 기본값은 `"md"` 입니다. |
-| `theme` | `"auto" \| "light" \| "dark"` | 테마 모드입니다. 기본값은 `"auto"` 입니다. |
+| `theme` | `"light" \| "dark"` | 테마 모드입니다. 기본값은 `"light"` 입니다. |
 | `lang` | `string` | 언어를 설정합니다. |
 | `dateFormat` | `string` | 날짜 형식을 설정합니다. |
 | `renderPreview` | `(file) => ReactNode` | grid 미리보기를 커스터마이즈합니다. |

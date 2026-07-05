@@ -101,7 +101,7 @@ export const FileItem = ({
       onDoubleClick={handleDoubleClick}
       className={cn(
         "group relative flex cursor-pointer flex-col overflow-hidden rounded-xl border border-transparent transition-colors duration-150 ease-out select-none",
-        "hover:border-(--_fe-border)",
+        "hover:border-(--_fe-border-subtle)",
         active && "border-(--_fe-border)  ",
         className,
       )}

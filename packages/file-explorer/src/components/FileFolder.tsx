@@ -87,7 +87,7 @@ export const FileFolder = ({
         "bg-(--_fe-item-bg-soft) group relative flex w-full cursor-pointer items-center justify-start gap-1.5 rounded-lg border border-transparent p-2 transition-colors   select-none",
         active
           ? "bg-(--_fe-active-subtle) border-(--_fe-border)"
-          : "hover:border-(--_fe-border)",
+          : "hover:border-(--_fe-border-subtle)",
         className,
       )}
     >

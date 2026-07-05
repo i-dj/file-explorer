@@ -118,7 +118,7 @@ export const FileExplorerContext = createContext<FileExplorerContextValue>({
   t: createTranslator("en"),
   dateFormat: "YYYY/M/D HH:mm:ss",
   fontSize: "md",
-  theme: "auto",
+  theme: "light",
   allowMultiSelect: true,
   gridSize: "md",
   defaultViewMode: "grid",

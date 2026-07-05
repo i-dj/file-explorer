@@ -279,7 +279,6 @@ When `allowMultiSelect={false}`, the component disables:
 
 `theme` supports:
 
-- `"auto"`
 - `"light"`
 - `"dark"`
 
@@ -544,7 +543,7 @@ type FileListColumn = {
 | `breadcrumbs` | `BreadcrumbItem[]` | Legacy split input. |
 | `storageInfo` | `{ totalBytes?: number; availableBytes?: number }` | Shows capacity text below the header. |
 | `fontSize` | `"sm" \| "md" \| "lg"` | Global font scale for the component. Default is `"md"`. |
-| `theme` | `"auto" \| "light" \| "dark"` | Theme mode. Default is `"auto"`. |
+| `theme` | `"light" \| "dark"` | Theme mode. Default is `"light"`. |
 | `lang` | `string` | Sets locale. |
 | `dateFormat` | `string` | Controls formatted date output. |
 | `renderPreview` | `(file) => ReactNode` | Custom preview renderer for grid items. |

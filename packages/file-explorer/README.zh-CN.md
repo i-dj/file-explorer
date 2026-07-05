@@ -176,7 +176,6 @@ export default function Page() {
 
 `theme` 支持：
 
-- `"auto"`
 - `"light"`
 - `"dark"`
 
@@ -334,7 +333,7 @@ export default function Page() {
 | `breadcrumbs` | `BreadcrumbItem[]` | 旧版拆分输入。 |
 | `storageInfo` | `{ totalBytes?: number; availableBytes?: number }` | 显示容量信息。 |
 | `fontSize` | `"sm" \| "md" \| "lg"` | 统一控制组件字号，默认 `"md"`。 |
-| `theme` | `"auto" \| "light" \| "dark"` | 主题模式，默认 `"auto"`。 |
+| `theme` | `"light" \| "dark"` | 主题模式，默认 `"light"`。 |
 | `lang` | `string` | 设置语言。 |
 | `dateFormat` | `string` | 设置时间格式。 |
 | `renderPreview` | `(file) => ReactNode` | 自定义 grid 预览。 |

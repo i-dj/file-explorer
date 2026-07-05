@@ -60,7 +60,7 @@ export function FileExplorer({
   breadcrumbs,
   storageInfo,
   fontSize = "md",
-  theme = "auto",
+  theme = "light",
   allowMultiSelect = true,
   gridSize = "md",
   defaultViewMode = "grid",

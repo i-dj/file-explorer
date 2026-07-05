@@ -30,7 +30,7 @@ export const createSeedDatabase = (): DemoDatabase => ({
     {
       id: "folder_brand",
       storageId: "1",
-      name: "Brand Assets",
+      name: "Brand Assets这里是中文，测试下中文显示",
       type: "folder",
       parentId: undefined,
       updatedAt: "2026-04-16T09:30:00.000Z",
@@ -784,8 +784,7 @@ export const createSeedDatabase = (): DemoDatabase => ({
       mimeType: "text/plain",
       tagColors: ["gray"],
       metadata: {
-        sourceUrl:
-          "https://www.w3.org/TR/PNG/iso_8859-1.txt",
+        sourceUrl: "https://www.w3.org/TR/PNG/iso_8859-1.txt",
       },
     },
     {

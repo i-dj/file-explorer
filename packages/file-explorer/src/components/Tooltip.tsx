@@ -49,9 +49,16 @@ export const Tooltip = ({
             side={side}
             sideOffset={8}
             collisionPadding={8}
-            className="z-9999 max-w-48 rounded-md bg-(--_fe-tooltip-bg) px-2 py-1 text-[12px] leading-none whitespace-nowrap text-(--_fe-tooltip-text) shadow-lg"
+            className="z-9999 max-w-44
+            break-all leading-4
+              rounded-md bg-(--_fe-tooltip-bg) px-2 py-1 text-xs   text-(--_fe-tooltip-text) shadow-lg"
           >
             {content}
+            <RadixTooltip.Arrow
+              width={10}
+              height={6}
+              style={{ fill: "var(--_fe-tooltip-bg)" }}
+            />
           </RadixTooltip.Content>
         </RadixTooltip.Portal>
       </RadixTooltip.Root>
