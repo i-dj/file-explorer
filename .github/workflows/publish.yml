@@ -1,0 +1,64 @@
+name: Publish NPM
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  PACKAGE_DIR: packages/file-explorer
+  PACKAGE_NAME: "@nextdj/file-explorer"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Sync package version
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+
+          node <<EOF
+          const fs=require('fs')
+          const file='${{ env.PACKAGE_DIR }}/package.json'
+          const pkg=JSON.parse(fs.readFileSync(file))
+          pkg.version='$VERSION'
+          fs.writeFileSync(file,JSON.stringify(pkg,null,2)+'\n')
+          EOF
+
+      - name: Typecheck
+        run: pnpm --filter "$PACKAGE_NAME" typecheck
+
+      - name: Build
+        run: pnpm --filter "$PACKAGE_NAME" build
+
+      - name: Pack
+        working-directory: packages/file-explorer
+        run: pnpm pack --dry-run
+
+      - name: Publish
+        working-directory: packages/file-explorer
+        run: pnpm publish --access public --no-git-checks --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

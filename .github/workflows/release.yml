@@ -1,0 +1,90 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version (v1.2.3). Leave empty to auto increment patch."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+env:
+  PACKAGE_DIR: packages/file-explorer
+  PACKAGE_NAME: "@nextdj/file-explorer"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Resolve Version
+        id: version
+        shell: bash
+        run: |
+          INPUT="${{ inputs.version }}"
+
+          if [ -n "$INPUT" ]; then
+            VERSION="$INPUT"
+          else
+            LATEST=$(npm view "$PACKAGE_NAME" version 2>/dev/null || true)
+
+            if [ -z "$LATEST" ]; then
+              LATEST=$(node -p "require('./${PACKAGE_DIR}/package.json').version")
+            fi
+
+            IFS='.' read MAJOR MINOR PATCH <<<"$LATEST"
+            PATCH=$((PATCH+1))
+            VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          fi
+
+          PACKAGE_VERSION="${VERSION#v}"
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "package_version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check Version
+        run: |
+          if npm view "$PACKAGE_NAME@${{ steps.version.outputs.package_version }}" version >/dev/null 2>&1; then
+            echo "Version already exists."
+            exit 1
+          fi
+
+      - name: Update package.json
+        run: |
+          node <<EOF
+          const fs=require('fs')
+          const file='${{ env.PACKAGE_DIR }}/package.json'
+          const pkg=JSON.parse(fs.readFileSync(file))
+          pkg.version='${{ steps.version.outputs.package_version }}'
+          fs.writeFileSync(file,JSON.stringify(pkg,null,2)+'\n')
+          EOF
+
+      - name: Commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          git add "${{ env.PACKAGE_DIR }}/package.json"
+
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "chore: release ${{ steps.version.outputs.version }} [skip ci]"
+          fi
+
+      - name: Create Tag
+        run: |
+          git tag "${{ steps.version.outputs.version }}"
+          git push origin HEAD:main
+          git push origin "${{ steps.version.outputs.version }}"
